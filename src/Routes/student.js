@@ -2,6 +2,7 @@ const express = require("express");
 const Router = express.Router();
 const student = require("../modules/students");
 const bcrypt = require("bcryptjs");
+const { promisify } = require("util");
 
 Router.get("/", (req, res) => {
   res.render("index");
@@ -39,11 +40,19 @@ Router.post("/register", async (req, res) => {
     res.status(400).send("not matching");
   }
 });
-Router.get("/login", (req, res) => {
+Router.get("/login", async (req, res) => {
   res.render("index");
 });
 Router.post("/login", async (req, res) => {
   try {
+    // if (!token) {
+    //   res.send("You are not logged in! Please log in to get access.", 401);
+    // }
+    // const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
+    // const currentUser = await student.findById(decoded.id);
+    // if (!currentUser) {
+    //   res.send("The user belonging to this token does no longer exist.", 401);
+    // }
     const email = req.body.email;
     const password = req.body.password;
     const useremail = await student.findOne({ email: email });

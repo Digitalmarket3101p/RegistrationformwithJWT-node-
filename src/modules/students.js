@@ -63,7 +63,10 @@ studentschema.methods.generatetoken = async function () {
   try {
     const token = jwt.sign(
       { _id: this._id.toString() },
-      "hfkhskfdhskdjfhdskjhfskjdfhskjdfhkjdsf"
+      process.env.JWT_SECRET,
+      {
+        expiresIn: process.env.JWT_EXPIRES_IN,
+      }
     );
     this.tokens = this.tokens.concat({ token: token });
     await this.save();
