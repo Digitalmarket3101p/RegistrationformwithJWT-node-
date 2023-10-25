@@ -8,15 +8,15 @@
     <header>
       <nav class="navbar">
         <a class="logo" href="#">Coffee<span>.</span></a>
+        {{!-- <h1>Secrate</h1> --}}
         <ul class="menu-links">
           <span id="close-menu-btn" class="material-symbols-outlined">close</span>
-          <li><a href="#">Home</a></li>         
-           <li><a href="/secrate">Secrate page[validation]</a></li>
 
+          <li><a href="#">Home</a></li>
           <li><a href="#">Products</a></li>
           <li><a href="#">Testimonials</a></li>
           <li><a href="#">About us</a></li>
-          <li><a href="#">Contact us</a></li>
+          <li><a href="/logout">Log out</a></li>
         </ul>
         <span id="hamburger-btn" class="material-symbols-outlined">menu</span>
       </nav>
@@ -24,7 +24,7 @@
 
     <section class="hero-section">
       <div class="content">
-        <h2>Start Your Day With Fresh Coffee</h2>
+        <h2>Secareate Start Your Day With Fresh Coffee</h2>
         <p>
           Coffee is a popular and beloved beverage enjoyed by 
           people around the world.Awaken your senses with a steaming cup of liquid motivation.
@@ -41,7 +41,7 @@
       // Toggle mobile menu on hamburger button click
       hamburgerBtn.addEventListener("click", () => header.classList.toggle("show-mobile-menu"));
 
-      // Close mobile menu on close button click
+      // Close mobile menu on close button click  
       closeMenuBtn.addEventListener("click", () => hamburgerBtn.click());
     </script>
     

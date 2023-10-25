@@ -59,7 +59,7 @@ const studentschema = new mongoose.Schema({
   ],
 });
 
-studentschema.methods.generatetoken = async function () {
+studentschema.methods.generatetoken = async function (req,res) {
   try {
     const token = jwt.sign(
       { _id: this._id.toString() },

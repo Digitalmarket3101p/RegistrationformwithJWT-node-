@@ -3,10 +3,12 @@ const Router = express.Router();
 const student = require("../modules/students");
 const bcrypt = require("bcryptjs");
 const { promisify } = require("util");
+const cookieparser = require("cookie-parser");
 
 Router.get("/", (req, res) => {
   res.render("index");
 });
+
 Router.get("/register", (req, res) => {
   res.render("register");
 });
@@ -28,6 +30,11 @@ Router.post("/register", async (req, res) => {
       });
       const token = await registerEmployees.generatetoken();
       console.log("token", token);
+      res.cookie("jwt", token, {
+        expires: new Date(Date.now() + 300000),
+        httpOnly: true,
+      });
+      // console.log(cookie);
       const registerd = await registerEmployees.save();
       console.log("page part", registerd);
 
@@ -59,6 +66,10 @@ Router.post("/login", async (req, res) => {
     const ismatch = await bcrypt.compare(password, useremail.password);
     const token = await useremail.generatetoken();
     console.log("login token", token);
+    res.cookie("jwt", token, {
+      expires: new Date(Date.now() + 300000),
+      httpOnly: true,
+    });
 
     if (ismatch) {
       res.status(201).render("login");
